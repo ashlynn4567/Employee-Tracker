@@ -1,0 +1,28 @@
+DROP TABLE IF EXISTS employees;
+DROP TABLE IF EXISTS roles;
+DROP TABLE IF EXISTS departments;
+
+CREATE TABLE departments (
+    id INTEGER AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(50) NOT NULL
+);
+
+CREATE TABLE roles (
+    id INTEGER AUTO_INCREMENT PRIMARY KEY,
+    title VARCHAR(50) NOT NULL,
+    salary DECIMAL NOT NULL, 
+    department_id INTEGER,
+    FOREIGN KEY (department_id) REFERENCES departments(id) ON DELETE CASCADE 
+);
+
+CREATE TABLE employees (
+    id INTEGER AUTO_INCREMENT PRIMARY KEY,
+    first_name VARCHAR(50) NOT NULL,
+    last_name VARCHAR(50) NOT NULL,
+    role_id INTEGER,
+    FOREIGN KEY (role_id) REFERENCES roles(id) ON DELETE CASCADE,
+    /* how to reference a row of the same table?? */
+    employee_id INTEGER,
+    FOREIGN KEY (employee_id) REFERENCES employees(id) ON DELETE CASCADE,
+    created_at DATETIME DEFAULT CURRENT_TIMESTAMP
+);

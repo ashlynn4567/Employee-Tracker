@@ -1,15 +1,15 @@
 // import all necessary dependencies
 const mysql = require("mysql2");
 
-// connect to database ***
+// connect to database
 const db = mysql.createConnection(
     {
         host: "localhost",
         // your mysql username
-        user: "root",
+        user: process.env.DB_USER,
         // your mysql password
-        password: "",
-        database: "employee_tracker"
+        password: process.env.DB_PW,
+        database: process.env.DB_NAME
     },
     console.log("Connected to the employee_tracker database")
 );

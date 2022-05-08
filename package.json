@@ -1,7 +1,27 @@
 {
   "dependencies": {
     "console.table": "^0.10.0",
+    "dotenv": "^16.0.0",
     "inquirer": "^8.2.4",
     "mysql2": "^2.3.3"
-  }
+  },
+  "name": "025.challenge12-employeetracker",
+  "description": "This is my twelfth challenge assignment for the University of Oregon Coding Bootcamp 2022. In this challenge, I use Node.js, Inquirer, and SQL to create a database connects with the command line interface. Users can search for employee information by entering key words into each inquiry prompt.",
+  "version": "1.0.0",
+  "main": "index.js",
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ashlynn4567/Employee-Tracker.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ashlynn4567/Employee-Tracker/issues"
+  },
+  "homepage": "https://github.com/ashlynn4567/Employee-Tracker#readme"
 }
