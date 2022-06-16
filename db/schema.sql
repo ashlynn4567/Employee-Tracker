@@ -1,28 +1,28 @@
-DROP TABLE IF EXISTS employees;
-DROP TABLE IF EXISTS roles;
-DROP TABLE IF EXISTS departments;
+DROP DATABASE IF EXISTS employee_tracker;
+CREATE DATABASE employee_tracker;
 
-CREATE TABLE departments (
+USE employee_tracker;
+
+CREATE TABLE department (
     id INTEGER AUTO_INCREMENT PRIMARY KEY,
     name VARCHAR(50) NOT NULL
 );
 
-CREATE TABLE roles (
+CREATE TABLE role (
     id INTEGER AUTO_INCREMENT PRIMARY KEY,
     title VARCHAR(50) NOT NULL,
     salary DECIMAL NOT NULL, 
-    department_id INTEGER,
-    FOREIGN KEY (department_id) REFERENCES departments(id) ON DELETE CASCADE 
+    department_id INTEGER NOT NULL,
+    CONSTRAINT fk_department FOREIGN KEY (department_id) REFERENCES department(id) ON DELETE CASCADE
 );
 
-CREATE TABLE employees (
+CREATE TABLE employee (
     id INTEGER AUTO_INCREMENT PRIMARY KEY,
     first_name VARCHAR(50) NOT NULL,
     last_name VARCHAR(50) NOT NULL,
-    role_id INTEGER,
-    FOREIGN KEY (role_id) REFERENCES roles(id) ON DELETE CASCADE,
-    /* how to reference a row of the same table?? */
-    employee_id INTEGER,
-    FOREIGN KEY (employee_id) REFERENCES employees(id) ON DELETE CASCADE,
+    role_id INTEGER NOT NULL,
+    CONSTRAINT fk_role FOREIGN KEY (role_id) REFERENCES role(id) ON DELETE CASCADE,
+    manager_id INTEGER,
+    CONSTRAINT fk_manager FOREIGN KEY (manager_id) REFERENCES employee(id) ON DELETE SET NULL,
     created_at DATETIME DEFAULT CURRENT_TIMESTAMP
 );
