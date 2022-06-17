@@ -1,5 +1,5 @@
 // import dependencies
-const { mainMenu } = require("./utils/helpers");
+const mainMenu = require("./utils/helpers");
 
 // inquirer commands
 const init = () => {

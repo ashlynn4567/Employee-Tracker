@@ -40,8 +40,8 @@ This application is run using the user's terminal. Before running this applicati
      - Employee's Manager
 
 <p align="center">
-<img alt="A demonstration gif showing the user starting the application with the command 'npm start'. The terminal produces prompts asking what the user would like to do. The user can navigate the menu that appears to create (add), read (view), update, or delete employees, roles, or departments." src="./assets/images/employee-tracker-demo.jpg"/>
-<br>Here's a <a href="[insert later]" target="_blank">link</a> to the video version of the above gif.
+<img alt="A demonstration gif showing the user starting the application with the command 'npm start'. The terminal produces prompts asking what the user would like to do. The user can navigate the menu that appears to create (add), read (view), update, or delete employees, roles, or departments." src="./assets/images/employee-tracker-demo.gif"/>
+<br>Here's a <a href="https://drive.google.com/file/d/1VLtoDTT4m-AxPKhRVItuFxDitoCMmF3U/view" target="_blank">link</a> to the video version of the above gif.
 </p>
 
 3. If the user chooses to view:
@@ -109,7 +109,7 @@ In order to use this application, you will need to install it on your local comp
 For further help with installation, please refer to the below demonstration video.
 
 <p align="center">
-<img alt="A demonstration gif showing how to clone the repository to your local machine, install all necessary dependencies, create a .env file, and seed your database." src="./assets/images/employee-tracker-demo-6.jpg"/>
+<img alt="A demonstration gif showing how to clone the repository to your local machine, install all necessary dependencies, create a .env file, and seed your database." src="./assets/images/employee-tracker-demo-6.gif"/>
 <br>Here's a <a href="[insert later]" target="_blank">link</a> to the video version of the above gif.
 </p>
 
