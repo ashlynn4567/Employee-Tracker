@@ -1,3 +1,6 @@
+// import dependencies
+const connection = require('./connection');
+
 // class that holds all methods
 class DB {
     // references the connection 
