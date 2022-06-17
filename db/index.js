@@ -50,3 +50,28 @@ const addEmployee = (employee) => {
 const deleteEmployee = (employeeId) => {
     return this.connection.promise().query("DELETE FROM employee WHERE id = ?", employeeId);
 };
+
+// update employee role method
+const updateEmployeeRole = (employeeId, roleId) => {
+    return this.connection.promise().query("UPDATE employee SET role_id = ? WHERE id = ?", [roleId, employeeId]);
+};
+
+// update employee manager method
+const updateEmployeeManager = (employeeId, managerId) => {
+    return this.connection.promise().query("UPDATE employee SET manager_id = ? WHERE id = ?", [managerId, employeeId]);
+};
+
+module.exports = {
+    findAllDepartments,
+    findAllRoles,
+    findAllEmployees, 
+    findAllManagers, 
+    addDepartment, 
+    deleteDepartment, 
+    addRole, 
+    deleteRole, 
+    addEmployee,
+    deleteEmployee,  
+    updateEmployeeRole, 
+    updateEmployeeManager
+};
