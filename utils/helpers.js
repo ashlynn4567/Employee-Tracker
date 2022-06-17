@@ -144,3 +144,66 @@ const deleteDepartment = () => {
             .then(() => mainMenu());
     });
 };
+
+// function to add a role
+const addRole = () => {
+    db.findAllDepartments()
+        .then(([rows]) => {
+            let departments = rows;
+
+            // map through departments and turn them into an array
+            const departmentNames = departments.map(({ id, department }) => ({
+                name: department,
+                value: id
+            }));
+
+            // prompt user for role information
+            inquirer.prompt([
+                {
+                    type: 'input',
+                    name: 'title',
+                    message: 'What is the name of the role?'
+                },
+                {
+                    type: 'input',
+                    name: 'salary',
+                    message: 'What is the salary of the role?'
+                },
+                {
+                    type: 'list',
+                    name: 'department_id',
+                    message: 'Which department does the role belong to?',
+                    choices: departmentNames
+                }
+            ])
+            .then(role => {
+                db.addRole(role)
+                .then(() => console.log(`Added ${role.title} to the database successfully!`))
+                .then(() => mainMenu());
+            });
+        });
+};
+
+// function to delete a role
+const deleteRole = () => {
+    db.findAllRoles()
+        .then(([rows]) => {
+            let roles = rows;
+            const roleNames = roles.map(({ id, job_title }) => ({
+                name: job_title,
+                value: id
+            }));
+
+            inquirer.prompt([
+                {
+                    type: 'list',
+                    name: 'role',
+                    message: 'Which role would you like to remove?',
+                    choices: roleNames
+                }
+            ])
+            .then(res => db.deleteRole(res.role))
+            .then(() => console.log('Removed role from the database successfully!'))
+            .then(() => mainMenu());
+    });  
+};
