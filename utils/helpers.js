@@ -207,3 +207,101 @@ const deleteRole = () => {
             .then(() => mainMenu());
     });  
 };
+
+// function to add an employee
+const addEmployee = () => {
+    inquirer.prompt([
+        {
+            type: 'input',
+            name: 'first_name',
+            message: "What is the employee's first name?"
+        },
+        {
+            type: 'input',
+            name: 'last_name',
+            message: "What is the employee's last name?"
+        }
+    ])
+    .then(res => {
+        let firstName = res.first_name;
+        let lastName = res.last_name;
+
+        db.findAllRoles()
+            .then(([rows]) => {
+                let roles = rows;
+                const roleNames = roles.map(({ id, job_title }) => ({
+                    name: job_title,
+                    value: id
+                }));
+
+                inquirer.prompt([
+                    {
+                        type: 'list',
+                        name: 'role',
+                        message: "What is the employee's role?",
+                        choices: roleNames
+                    }
+                ])
+                .then(res => {
+                    let role = res.role;
+
+                    db.findAllEmployees()
+                        .then(([rows]) => {
+                            let employees = rows;
+                            const managerNames = employees.map(({ id, first_name, last_name }) => ({
+                                name: `${first_name} ${last_name}`,
+                                value: id
+                            }));
+
+                            // add 'none' to manager choices
+                            managerNames.unshift({ name: 'None', value: null });
+
+                            inquirer.prompt([
+                                {
+                                    type: 'list',
+                                    name: 'manager',
+                                    message: "Who is the employee's manager?",
+                                    choices: managerNames
+                                }
+                            ])
+                            .then(res => {
+                                let employee = {
+                                    manager_id: res.manager,
+                                    role_id: role,
+                                    first_name: firstName,
+                                    last_name: lastName
+                                }
+
+                                db.addEmployee(employee)
+                                .then(() => console.log(`Added ${firstName} ${lastName} to the database successfully!`))
+                                .then(() => mainMenu());
+                            });
+                        });
+                });
+            });
+    });
+};
+
+// function to delete an employee
+const deleteEmployee = () => {
+    db.findAllEmployees()
+        .then(([rows]) => {
+            let employees = rows;
+            const employeeNames = employees.map(({ id, first_name, last_name }) => ({
+                name: `${first_name} ${last_name}`,
+                value: id
+            }));
+
+            inquirer.prompt([
+                {
+                    type: 'list',
+                    name: 'employee',
+                    message: "Which employee would you like to remove?",
+                    choices: employeeNames
+                }
+            ])
+            .then(res => db.deleteEmployee(res.employee))
+            .then(() => console.log('Removed employee from the database successfully!'))
+            .then(() => mainMenu());
+    });
+};
