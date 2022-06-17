@@ -71,3 +71,35 @@ const mainMenu = () => {
             };
         });
 };
+
+// function to view all departments
+const viewDepartments = () => {
+    db.findAllDepartments()
+        // parse the query to readability 
+        .then(([rows]) => {
+            let departments = rows;
+            console.table(departments);
+        })
+        .then(() => mainMenu());
+};
+
+// function to view all roles
+const viewRoles = () => {
+    db.findAllRoles()
+        .then(([rows]) => {
+            let roles = rows;
+            console.table(roles);
+        })
+        // send user back to prompts
+        .then(() => mainMenu());
+};
+
+// function to view all employees
+const viewEmployees = () => {
+    db.findAllEmployees()
+        .then(([rows]) => {
+            let employees = rows;
+            console.table(employees);
+        })
+        .then(() => mainMenu());
+};
