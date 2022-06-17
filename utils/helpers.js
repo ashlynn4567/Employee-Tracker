@@ -66,7 +66,7 @@ const mainMenu = () => {
                     updateEmployeeManager();
                     break;
                 default:
-                    console.log("Reached quit statement");
+                    console.log("Quitting application.");
                     quit();
             };
         });
