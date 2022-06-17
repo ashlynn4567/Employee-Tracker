@@ -20,3 +20,33 @@ const findAllEmployees = () => {
 const findAllManagers = (employeeId) => {
     return this.connection.promise().query("SELECT id, first_name, last_name FROM employee WHERE id != ?", employeeId);
 };
+
+// add department method
+const addDepartment = (department) => {
+    return this.connection.promise().query("INSERT INTO department SET ?", department);
+};
+
+// delete department method
+const deleteDepartment = (departmentId) => {
+    return this.connection.promise().query("DELETE FROM department WHERE id = ?", departmentId);
+};
+
+// add role method
+const addRole = (role) => {
+    return this.connection.promise().query("INSERT INTO role SET ?", role);
+};
+
+// delete role method
+const deleteRole = (roleId) => {
+    return this.connection.promise().query("DELETE FROM role WHERE id = ?", roleId);
+};
+
+// add employee method
+const addEmployee = (employee) => {
+    return this.connection.promise().query("INSERT INTO employee SET ?", employee);
+};
+
+// delete employee method
+const deleteEmployee = (employeeId) => {
+    return this.connection.promise().query("DELETE FROM employee WHERE id = ?", employeeId);
+};
