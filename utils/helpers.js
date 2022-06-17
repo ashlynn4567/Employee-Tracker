@@ -305,3 +305,102 @@ const deleteEmployee = () => {
             .then(() => mainMenu());
     });
 };
+
+// function to update an employee role
+const updateEmployeeRole = () => {
+    db.findAllEmployees()
+        .then(([rows]) => {
+            let employees = rows;
+            const employeeNames = employees.map(({ id, first_name, last_name }) => ({
+                name: `${first_name} ${last_name}`,
+                value: id
+            }));
+
+            inquirer.prompt([
+                {
+                    type: 'list',
+                    name: 'employee',
+                    message: "Which employee's role do you want to update?",
+                    choices: employeeNames
+                }
+            ])
+            .then(res => {
+                let employee = res.employee
+                db.findAllRoles()
+                    .then(([rows]) => {
+                        let roles = rows;
+                        const roleNames = roles.map(({ id, job_title }) => ({
+                            name: job_title,
+                            value: id
+                        }));
+
+                        inquirer.prompt([
+                            {
+                                type: 'list',
+                                name: 'role',
+                                message: "Which role do you want to assign to the selected employee?",
+                                choices: roleNames
+                            }
+                        ])
+                        .then(res => db.updateEmployeeRole(employee, res.role))
+                        .then(() => console.log("Updated employee's role successfully!"))
+                        .then(() => mainMenu());
+                    });
+            });
+        });
+};
+
+// function to update an employee manager
+const updateEmployeeManager = () => {
+    db.findAllEmployees()
+        .then(([rows]) => {
+            let employees = rows;
+            const employeeNames = employees.map(({ id, first_name, last_name }) => ({
+                name: `${first_name} ${last_name}`,
+                value: id
+            }));
+
+            inquirer.prompt([
+                {
+                    type: 'list',
+                    name: 'employee',
+                    message: "Which employee's manager do you want to update?",
+                    choices: employeeNames
+                }
+            ])
+            .then(res => {
+                let employee = res.employee
+                db.findAllManagers(employee)
+                    .then(([rows]) => {
+                        let managers = rows;
+                        const managerNames = managers.map(({ id, first_name, last_name }) => ({
+                            name: `${first_name} ${last_name}`,
+                            value: id
+                        }));
+
+                        inquirer.prompt([
+                            {
+                                type: 'list',
+                                name: 'manager',
+                                message: "Which manager do you want to assign to the selected employee?",
+                                choices: managerNames
+                            }
+                        ])
+                        .then(res => db.updateEmployeeManager(employee, res.manager))
+                        .then(() => console.log("Updated employee's manager successfully!"))
+                        .then(() => mainMenu());
+                    });
+            });
+        });
+
+};
+
+
+// function that quits application
+const quit = () => {
+    console.log('Thanks for using employee tracker. Goodbye!');
+    process.exit();
+};
+
+// exports
+module.exports = mainMenu;
