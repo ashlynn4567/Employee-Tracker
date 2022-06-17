@@ -103,3 +103,44 @@ const viewEmployees = () => {
         })
         .then(() => mainMenu());
 };
+
+// function to add a department
+const addDepartment = () => {
+    inquirer.prompt([
+        {
+            type: 'input',
+            name: 'name',
+            message: 'What is the name of the department?'
+        }
+    ])
+    .then(res => {
+        let name = res;
+        db.addDepartment(name)
+            .then(() => console.log(`Added ${name.name} to the database successfully!`))
+            .then(() => mainMenu());
+    });
+};
+
+// function to delete a department
+const deleteDepartment = () => {
+    db.findAllDepartments()
+        .then(([rows]) => {
+            let departments = rows;
+            const departmentNames = departments.map(({ id, department }) => ({
+                name: department,
+                value: id
+            }));
+
+            inquirer.prompt([
+                {
+                    type: 'list',
+                    name: 'department',
+                    message: 'Which department would you like to remove?',
+                    choices: departmentNames
+                }
+            ])
+            .then(res => db.deleteDepartment(res.department))
+            .then(() => console.log('Removed department from the database successfully!'))
+            .then(() => mainMenu());
+    });
+};
