@@ -1,11 +1,10 @@
 // import dependencies
-const inquirer = require("inquirer");
+const { mainMenu } = require("./utils/helpers");
 
 // inquirer commands
-const promptUser = () => {
-    return inquirer.prompt([
-        
-    ])
+const init = () => {
+    console.log("Welcome to Employee Tracker!");
+    return mainMenu();
 };
 
-promptUser();
+init();
