@@ -124,7 +124,7 @@ In the future, I would like to add the following improvements:
 - A feature that allows users to export their employee tracker into an excel spreadsheet.
 - A front-end UI so that users don't have to go through complicated installation instructions in order to use the application.
 
-I'm always interested in refactoring code to improve it's functionality. If you would like to suggest your own improvements, you can reach our development team at the links below.
+I'm always interested in refactoring code to improve it's functionality. If you would like to suggest your own improvements, you can reach me at the links below.
 
 - <a href="mailto:ashlynn4567@gmail.com">Email</a>
 - <a href="https://github.com/ashlynn4567">GitHub</a>
