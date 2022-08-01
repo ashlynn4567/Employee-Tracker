@@ -13,7 +13,7 @@
 
 ## Description
 
-This is my twelfth challenge assignment for the University of Oregon Coding Bootcamp 2022. In this challenge, I use Node.js, Inquirer, and SQL to create a database connects with the command line interface. Users can search for employee information by entering key words into each inquiry prompt.
+Employee Tracker is an application that uses Node.js, Inquirer, and SQL to create a database that connects with the command line interface. Users can search for employee information by entering key words into each inquiry prompt. 
 
 This application is useful to employers who wish to track their employees in one central database. They can view departments, roles, or employee tables. They can also add, delete, or update each of these tables.
 
